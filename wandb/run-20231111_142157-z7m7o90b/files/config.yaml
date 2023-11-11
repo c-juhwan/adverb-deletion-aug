@@ -1,0 +1,182 @@
+wandb_version: 1
+
+task:
+  desc: null
+  value: classification
+job:
+  desc: null
+  value: training
+task_dataset:
+  desc: null
+  value: sst2
+description:
+  desc: null
+  value: default
+data_path:
+  desc: null
+  value: ./dataset/
+preprocess_path:
+  desc: null
+  value: /HDD/juhwan/preprocessed/Base_Classification
+model_path:
+  desc: null
+  value: /HDD/juhwan/model_final/Base_Classification
+checkpoint_path:
+  desc: null
+  value: /HDD/juhwan/model_checkpoint/Base_Classification
+result_path:
+  desc: null
+  value: /HDD/juhwan/results/Base_Classification
+log_path:
+  desc: null
+  value: /HDD/juhwan/tensorboard_log/Base_Classification
+proj_name:
+  desc: null
+  value: Base_Classification
+model_type:
+  desc: null
+  value: bert
+model_ispretrained:
+  desc: null
+  value: true
+rnn_isbidirectional:
+  desc: null
+  value: true
+min_seq_len:
+  desc: null
+  value: 4
+max_seq_len:
+  desc: null
+  value: 100
+dropout_rate:
+  desc: null
+  value: 0.2
+embed_size:
+  desc: null
+  value: 768
+hidden_size:
+  desc: null
+  value: 768
+num_layers_rnn:
+  desc: null
+  value: 2
+num_layers_transformer:
+  desc: null
+  value: 6
+num_heads_transformer:
+  desc: null
+  value: 8
+optimizer:
+  desc: null
+  value: Adam
+scheduler:
+  desc: null
+  value: None
+num_epochs:
+  desc: null
+  value: 5
+learning_rate:
+  desc: null
+  value: 5.0e-05
+num_workers:
+  desc: null
+  value: 2
+batch_size:
+  desc: null
+  value: 32
+weight_decay:
+  desc: null
+  value: 0
+clip_grad_norm:
+  desc: null
+  value: 5
+early_stopping_patience:
+  desc: null
+  value: 5
+train_valid_split:
+  desc: null
+  value: 0.2
+optimize_objective:
+  desc: null
+  value: accuracy
+augmentation_type:
+  desc: null
+  value: adverb_aug
+augmentation_eda_alpha_sr:
+  desc: null
+  value: 0.1
+augmentation_eda_alpha_ri:
+  desc: null
+  value: 0.1
+augmentation_eda_alpha_rs:
+  desc: null
+  value: 0.1
+augmentation_eda_p_rd:
+  desc: null
+  value: 0.1
+augmentation_aeda_alpha:
+  desc: null
+  value: 0.1
+augmentation_label_smoothing:
+  desc: null
+  value: 0.2
+test_batch_size:
+  desc: null
+  value: 16
+device:
+  desc: null
+  value: cuda
+seed:
+  desc: null
+  value: 2023
+use_tensorboard:
+  desc: null
+  value: true
+use_wandb:
+  desc: null
+  value: true
+log_freq:
+  desc: null
+  value: 500
+vocab_size:
+  desc: null
+  value: 30522
+num_classes:
+  desc: null
+  value: 2
+_wandb:
+  desc: null
+  value:
+    python_version: 3.8.18
+    cli_version: 0.14.2
+    framework: huggingface
+    huggingface_version: 4.27.4
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1699680117.969848
+    t:
+      1:
+      - 1
+      - 5
+      - 11
+      - 49
+      - 53
+      - 55
+      2:
+      - 1
+      - 5
+      - 11
+      - 49
+      - 53
+      - 55
+      3:
+      - 1
+      - 13
+      - 15
+      - 16
+      - 23
+      4: 3.8.18
+      5: 0.14.2
+      6: 4.27.4
+      8:
+      - 5

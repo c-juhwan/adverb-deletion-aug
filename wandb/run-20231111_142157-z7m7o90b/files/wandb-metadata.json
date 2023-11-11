@@ -1,0 +1,157 @@
+{
+    "os": "Linux-5.4.0-150-generic-x86_64-with-glibc2.17",
+    "python": "3.8.18",
+    "heartbeatAt": "2023-11-11T05:21:58.693908",
+    "startedAt": "2023-11-11T05:21:57.956973",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--task=classification",
+        "--job=training",
+        "--task_dataset=sst2",
+        "--model_type=bert",
+        "--augmentation_type=adverb_aug"
+    ],
+    "state": "running",
+    "program": "main.py",
+    "codePath": "main.py",
+    "host": "iipl-System-Product-Name",
+    "username": "juhwan",
+    "executable": "/home/juhwan/anaconda3/envs/proj-adverb/bin/python",
+    "cpu_count": 10,
+    "cpu_count_logical": 20,
+    "cpu_freq": {
+        "current": 2543.76895,
+        "min": 1200.0,
+        "max": 4560.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1200.273,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 1365.62,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 1200.082,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 4295.463,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 4299.999,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 1234.568,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 1941.471,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3983.504,
+            "min": 1200.0,
+            "max": 4700.0
+        },
+        {
+            "current": 1723.304,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 4299.999,
+            "min": 1200.0,
+            "max": 4700.0
+        },
+        {
+            "current": 1200.103,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 1411.202,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 1200.225,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3783.56,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 4300.306,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 1281.855,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 2038.095,
+            "min": 1200.0,
+            "max": 4600.0
+        },
+        {
+            "current": 4234.842,
+            "min": 1200.0,
+            "max": 4700.0
+        },
+        {
+            "current": 1580.542,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 4300.366,
+            "min": 1200.0,
+            "max": 4700.0
+        }
+    ],
+    "disk": {
+        "total": 1876.218734741211,
+        "used": 1357.4828758239746
+    },
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "gpu_count": 4,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        },
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        },
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        },
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        }
+    ],
+    "memory": {
+        "total": 125.49873733520508
+    }
+}
