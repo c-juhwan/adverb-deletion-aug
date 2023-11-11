@@ -47,7 +47,8 @@ def augmentation(args: argparse.Namespace) -> None:
     # Load preprocessed train data
     train_data = load_preprocessed_data(args)
     augmented_data = {
-        'input_text': [],
+        'input_text1': [],
+        'input_text2': [],
         'labels': [],
         'soft_labels': [],
         'vocab_size': train_data['vocab_size'],
@@ -55,32 +56,52 @@ def augmentation(args: argparse.Namespace) -> None:
         'tokenizer': train_data['tokenizer']
     }
 
-    for idx in tqdm(range(len(train_data['input_text'])), desc=f'Augmenting with {args.augmentation_type}'):
-        original_text = train_data['input_text'][idx]
+    for idx in tqdm(range(len(train_data['input_text1'])), desc=f'Augmenting with {args.augmentation_type}'):
+        original_text1 = train_data['input_text1'][idx]
+        original_text2 = train_data['input_text2'][idx]
 
         # Apply augmentation by pre-defined augmentation strategy
         if args.augmentation_type == 'hard_eda':
-            augmented_sent = run_eda(original_text, args)
+            augmented_sent1 = run_eda(original_text1, args)
+            if original_text2 != None:
+                augmented_sent2 = run_eda(original_text2, args)
+            else:
+                augmented_sent2 = None
             augmented_data['soft_labels'].append(train_data['soft_labels'][idx]) # Hard EDA: Keep original soft labels (Actually one-hot labels)
         elif args.augmentation_type == 'soft_eda':
-            augmented_sent = run_eda(original_text, args)
+            augmented_sent1 = run_eda(original_text1, args)
+            if original_text2 != None:
+                augmented_sent2 = run_eda(original_text2, args)
+            else:
+                augmented_sent2 = None
             soft_labels = train_data['soft_labels'][idx] * (1 - args.augmentation_label_smoothing) + args.augmentation_label_smoothing / train_data['num_classes']
             augmented_data['soft_labels'].append(soft_labels) # SoftEDA: Apply soft labels for soft_eda method using label smoothing
         elif args.augmentation_type == 'aeda':
-            augmented_sent = run_aeda(original_text, args)
+            augmented_sent1 = run_aeda(original_text1, args)
+            if original_text2 != None:
+                augmented_sent2 = run_aeda(original_text2, args)
+            else:
+                augmented_sent2 = None
             augmented_data['soft_labels'].append(train_data['soft_labels'][idx]) # AEDA: Keep original soft labels (Actually one-hot labels)
         elif args.augmentation_type in ['adverb_aug', 'adverb_aug_curriculum']:
-            augmented_sent, aug_count = run_adverb_aug(original_text, args)
-            if aug_count == 0:
+            augmented_sent1, aug_count1 = run_adverb_aug(original_text1, args)
+            if original_text2 != None:
+                augmented_sent2, aug_count2 = run_adverb_aug(original_text2, args)
+            else:
+                augmented_sent2 = None
+                aug_count2 = 0
+            if aug_count1 == 0 and aug_count2 == 0:
                 continue # Skip if no adverb is augmented
             augmented_data['soft_labels'].append(train_data['soft_labels'][idx]) # AEDA: Keep original soft labels (Actually one-hot labels)
 
-        augmented_data['input_text'].append(augmented_sent)
+        augmented_data['input_text1'].append(augmented_sent1)
+        augmented_data['input_text2'].append(augmented_sent2)
         augmented_data['labels'].append(train_data['labels'][idx]) # Keep the hard labels as they are
 
         # Merge original data & augmented data
         total_dict = {
-            'input_text': train_data['input_text'] + augmented_data['input_text'],
+            'input_text1': train_data['input_text1'] + augmented_data['input_text1'],
+            'input_text2': train_data['input_text2'] + augmented_data['input_text2'],
             'labels': train_data['labels'] + augmented_data['labels'],
             'soft_labels': train_data['soft_labels'] + augmented_data['soft_labels'],
             'vocab_size': augmented_data['vocab_size'],

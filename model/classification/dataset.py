@@ -18,9 +18,10 @@ class CustomDataset(Dataset):
         self.num_classes = data_['num_classes']
         self.vocab_size = data_['vocab_size']
 
-        for idx in tqdm(range(len(data_['input_text'])), desc=f'Loading data from {data_path}'):
+        for idx in tqdm(range(len(data_['input_text1'])), desc=f'Loading data from {data_path}'):
             self.data_list.append({
-                'input_text': data_['input_text'][idx],
+                'input_text1': data_['input_text1'][idx],
+                'input_text2': data_['input_text2'][idx],
                 'label': data_['labels'][idx],
                 'soft_label': data_['soft_labels'][idx],
                 'index': idx,
@@ -30,9 +31,23 @@ class CustomDataset(Dataset):
 
     def __getitem__(self, idx:int) -> dict:
         # Tokenize input text
-        input_tokenized = self.tokenizer(self.data_list[idx]['input_text'],
-                                         padding='max_length', truncation=True,
-                                         max_length=self.args.max_seq_len, return_tensors='pt')
+        if self.args.task_dataset in ['sst2', 'sst5', 'cola', 'subj', 'trec', 'mr', 'cr', 'proscons']:
+            input_tokenized = self.tokenizer(
+                self.data_list[idx]['input_text1'],
+                padding='max_length',
+                truncation=True,
+                max_length=self.args.max_seq_len,
+                return_tensors='pt',
+            )
+        elif self.args.task_dataset in ['mnli_m', 'mnli_mm', 'qnli', 'rte', 'wnli']:
+            input_tokenized = self.tokenizer(
+                self.data_list[idx]['input_text1'],
+                self.data_list[idx]['input_text2'],
+                padding='max_length',
+                truncation=True,
+                max_length=self.args.max_seq_len,
+                return_tensors='pt',
+            )
 
         input_tokenized = {k: v.squeeze(0) for k, v in input_tokenized.items()}
         label_tensor = torch.tensor(self.data_list[idx]['label'], dtype=torch.long)

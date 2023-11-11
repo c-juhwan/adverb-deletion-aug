@@ -8,7 +8,7 @@ class ArgParser():
     def __init__(self):
         self.parser = argparse.ArgumentParser()
         self.user_name = os.getlogin()
-        self.proj_name = 'Base_Classification'
+        self.proj_name = 'Adverb_Deletion_Augmentation'
 
         # Task arguments
         task_list = ['classification']
@@ -17,7 +17,8 @@ class ArgParser():
         job_list = ['preprocessing', 'training', 'resume_training', 'testing', 'augment']
         self.parser.add_argument('--job', type=str, choices=job_list, default='training',
                                  help='Job to do; Must be given.')
-        dataset_list = ['sst2', 'sst5', 'cola', 'subj', 'trec', 'mr', 'cr', 'proscons',]
+        dataset_list = ['sst2', 'sst5', 'cola', 'subj', 'trec', 'mr', 'cr', 'proscons',
+                        'mnli_m', 'mnli_mm', 'wnli', 'qnli', 'rte']
         self.parser.add_argument('--task_dataset', type=str, choices=dataset_list, default='cola',
                                  help='Dataset for the task; Must be given.')
         self.parser.add_argument('--description', type=str, default='default',
