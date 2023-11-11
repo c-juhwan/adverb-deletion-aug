@@ -8,16 +8,16 @@ DEVICE=cuda:0
 
 clear
 
-for DATASET in ${DATASET_ARRAY[@]}
+for DATASET in ${DATASET_LIST[@]}
 do
 
-for MODEL in ${MODEL_ARRAY[@]}
+for MODEL in ${MODEL_LIST[@]}
 do
 
 python main.py --task=classification --job=preprocessing \
                --task_dataset=${DATASET} --model_type=${MODEL}
 
-for AUG_TYPE in ${AUG_ARRAY[@]}
+for AUG_TYPE in ${AUG_LIST[@]}
 do
 
 python main.py --task=classification --job=augment \
