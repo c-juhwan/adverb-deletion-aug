@@ -74,7 +74,7 @@ def augmentation(args: argparse.Namespace) -> None:
                 augmented_sent2 = run_eda(original_text2, args)
             else:
                 augmented_sent2 = None
-            soft_labels = train_data['soft_labels'][idx] * (1 - args.augmentation_label_smoothing) + args.augmentation_label_smoothing / train_data['num_classes']
+            soft_labels = [each_label * (1 - args.augmentation_label_smoothing) + args.augmentation_label_smoothing / train_data['num_classes'] for each_label in train_data['soft_labels'][idx]]
             augmented_data['soft_labels'].append(soft_labels) # SoftEDA: Apply soft labels for soft_eda method using label smoothing
         elif args.augmentation_type == 'aeda':
             augmented_sent1 = run_aeda(original_text1, args)
