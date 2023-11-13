@@ -98,18 +98,18 @@ def augmentation(args: argparse.Namespace) -> None:
         augmented_data['input_text2'].append(augmented_sent2)
         augmented_data['labels'].append(train_data['labels'][idx]) # Keep the hard labels as they are
 
-        # Merge original data & augmented data
-        total_dict = {
-            'input_text1': train_data['input_text1'] + augmented_data['input_text1'],
-            'input_text2': train_data['input_text2'] + augmented_data['input_text2'],
-            'labels': train_data['labels'] + augmented_data['labels'],
-            'soft_labels': train_data['soft_labels'] + augmented_data['soft_labels'],
-            'vocab_size': augmented_data['vocab_size'],
-            'num_classes': augmented_data['num_classes'],
-            'tokenizer': augmented_data['tokenizer']
-        }
+    # Merge original data & augmented data
+    total_dict = {
+        'input_text1': train_data['input_text1'] + augmented_data['input_text1'],
+        'input_text2': train_data['input_text2'] + augmented_data['input_text2'],
+        'labels': train_data['labels'] + augmented_data['labels'],
+        'soft_labels': train_data['soft_labels'] + augmented_data['soft_labels'],
+        'vocab_size': augmented_data['vocab_size'],
+        'num_classes': augmented_data['num_classes'],
+        'tokenizer': augmented_data['tokenizer']
+    }
 
-        # Save total data as pickle file
-        save_path = os.path.join(args.preprocess_path, args.task, args.task_dataset, args.model_type)
-        with open(os.path.join(save_path, f'train_{args.augmentation_type}.pkl'), 'wb') as f:
-            pickle.dump(total_dict, f)
+    # Save total data as pickle file
+    save_path = os.path.join(args.preprocess_path, args.task, args.task_dataset, args.model_type)
+    with open(os.path.join(save_path, f'train_{args.augmentation_type}.pkl'), 'wb') as f:
+        pickle.dump(total_dict, f)
