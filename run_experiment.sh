@@ -1,9 +1,9 @@
-DATASET_LIST=(sst2 sst5 cola subj trec mr cr proscons)
-MODEL_LIST=(cnn lstm bert roberta)
+DATASET_LIST=(sst2 sst5 cola trec rte mnli_m mnli_mm qnli)
+MODEL_LIST=(bert)
 AUG_LIST=(none hard_eda soft_eda aeda adverb_aug adverb_aug_curriculum)
 BS=32
-LR=5e-5
-EP=10
+LR=1e-4
+EP=5
 DEVICE=cuda:0
 
 clear
